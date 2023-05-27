@@ -4,16 +4,19 @@ import { create } from 'zustand'
 
 interface BoardState {
     board: Board;
+    newTaskInput: string;
+    searchString: string;
+    newTaskType: TypeColum;
+    image: File | null;
     getBoard: () => void;
     setBoardState: (board: Board) => void;
     updateTodoInDB: (todo: Todo, columnId: TypeColum) => void;
-    newTaskInput: string;
     setNewTaskInput: (input: string) => void;
-    searchString: string;
     setSearchString: (searchString: string) => void;
-
     deleteTask: (taskIndex: number, todoId: Todo, id: TypeColum) => void;
-}
+    setNewTaskType: (columnId: TypeColum) => void;
+    setImage: (image: File | null) => void;
+  }
 
 export const useBoardStore = create<BoardState>((set, get) => ({
   board: {
@@ -22,6 +25,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
   searchString: "",
   newTaskInput: "",
+  newTaskType: "todo",
+  image: null,
   setSearchString: (searchString) => set({ searchString }),
 
   getBoard: async() => {
@@ -50,6 +55,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
   setNewTaskInput: (input: string) => set({ newTaskInput: input}),
 
+  setNewTaskType: (columnId: TypeColum) => set({ newTaskType: columnId}),
+
   updateTodoInDB: async(todo, columnId) => {
     await databases.updateDocument(
       process.env.NEXT_PUBLIC_DATABASE_ID!,
@@ -62,4 +69,5 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     )
   },
 
+  setImage: (image: File | null) => set({ image }),
 }))
