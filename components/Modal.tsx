@@ -24,9 +24,10 @@ function Modal() {
         state.closeModal,
     ]);
 
-    const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if(!newTaskInput) return;
+        
         addTask(newTaskInput, newTaskType, image);
         setImage(null);
         closeModal();

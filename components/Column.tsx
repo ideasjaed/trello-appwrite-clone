@@ -85,6 +85,7 @@ const Column = ({id, todos, index}: Props) => {
                                 </Draggable>
                             )})}
                             {provided.placeholder}
+
                             <div className="flex items-end justify-end p-2">
                                 <button onClick={handleAddTodo} className="text-green-500 hover:text-green-600">
                                         <PlusCircleIcon

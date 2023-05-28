@@ -5,16 +5,19 @@ import { create } from 'zustand'
 
 interface BoardState {
     board: Board;
-    newTaskInput: string;
-    searchString: string;
-    newTaskType: TypeColum;
-    image: File | null;
     getBoard: () => void;
     setBoardState: (board: Board) => void;
     updateTodoInDB: (todo: Todo, columnId: TypeColum) => void;
-    setNewTaskInput: (input: string) => void;
+    newTaskInput: string;
+    newTaskType: TypeColum;
+    image: File | null;
+    
+    searchString: string;
     setSearchString: (searchString: string) => void;
+    
     deleteTask: (taskIndex: number, todoId: Todo, id: TypeColum) => void;
+    
+    setNewTaskInput: (input: string) => void;
     setNewTaskType: (columnId: TypeColum) => void;
     setImage: (image: File | null) => void;
     addTask: (todo: string, columnId: TypeColum, image?: File | null) => void;
@@ -119,7 +122,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       }
       return {
         board: {
-          column: newColumns
+          column: newColumns,
         }
       }
     })
