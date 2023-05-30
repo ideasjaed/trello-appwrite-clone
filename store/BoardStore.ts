@@ -15,12 +15,12 @@ interface BoardState {
     searchString: string;
     setSearchString: (searchString: string) => void;
     
+    addTask: (todo: string, columnId: TypeColum, image?: File | null) => void;
     deleteTask: (taskIndex: number, todoId: Todo, id: TypeColum) => void;
     
     setNewTaskInput: (input: string) => void;
     setNewTaskType: (columnId: TypeColum) => void;
     setImage: (image: File | null) => void;
-    addTask: (todo: string, columnId: TypeColum, image?: File | null) => void;
   }
 
 export const useBoardStore = create<BoardState>((set, get) => ({
@@ -61,6 +61,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   setNewTaskInput: (input: string) => set({ newTaskInput: input}),
 
   setNewTaskType: (columnId: TypeColum) => set({ newTaskType: columnId}),
+  setImage: (image: File | null) => set({ image }),
 
   updateTodoInDB: async(todo, columnId) => {
     await databases.updateDocument(
@@ -74,11 +75,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     )
   },
 
-  setImage: (image: File | null) => set({ image }),
-
   addTask: async (todo: string, columnId: TypeColum, image?: File | null) => {
     let file: Image | undefined;
-
     if(image) {
       const fileUploaded = await uploadImage(image);
       if(fileUploaded) {
@@ -120,11 +118,14 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       } else {
         newColumns.get(columnId)?.todos.push(newTodo);
       }
+
       return {
         board: {
           column: newColumns,
         }
       }
     })
-  }
+  },
+
+
 }))

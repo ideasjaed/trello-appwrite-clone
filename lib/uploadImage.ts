@@ -1,7 +1,7 @@
 import { ID, storage } from "@/appwrite";
 
 const uploadImage = async (file: File) => {
-    if(file) return;
+    if(!file) return;
 
     const fileUploaded = await storage.createFile(
         "647148105cf9ffde4788",

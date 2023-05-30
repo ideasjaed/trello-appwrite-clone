@@ -11,7 +11,8 @@ import { PhotoIcon } from '@heroicons/react/24/solid';
 
 function Modal() {
     const imagePickerRef = useRef<HTMLInputElement>(null);
-    const [addTask, image, setImage, newTaskInput, setNewTaskInput, newTaskType] = useBoardStore((state) => [
+    const [addTask, image, setImage, newTaskInput, setNewTaskInput, newTaskType] =
+    useBoardStore((state) => [
         state.addTask,
         state.image,
         state.setImage,
@@ -27,16 +28,20 @@ function Modal() {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if(!newTaskInput) return;
-        
+
         addTask(newTaskInput, newTaskType, image);
         setImage(null);
         closeModal();
     }
 
-  return (
+return (
     // Use the `Transition` component at the root level
     <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="form" onSubmit={handleSubmit} className="relative z-10" onClose={closeModal}>
+        <Dialog
+        as="form"
+        onSubmit={handleSubmit}
+        className="relative z-10"
+        onClose={closeModal}>
             <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -78,7 +83,7 @@ function Modal() {
                                 <button
                                 type="button"
                                 onClick={() => {
-                                    imagePickerRef.current?.click()
+                                    imagePickerRef.current?.click();
                                 }}
                                 className="w-full border border-gray-300 rounded-md outline-none p-5 focus-visible:ring-2
                                 focus-visible:ring-blue-500 focus-visible:ring-offset-2

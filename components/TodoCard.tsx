@@ -30,8 +30,10 @@ const TodoCard = ({
 
     useEffect(() => {
       if(todo.image){
+        console.log(todo.image);
         const fetchImage = async () => {
             const url = await getUrl(todo.image!);
+            console.log(url, 'url');
             if(url) {
                 setImageUrl(url.toString());
             }
@@ -39,7 +41,6 @@ const TodoCard = ({
         fetchImage();
       }
     }, [todo])
-    
     return (
         <div
             {...draggableProps}
