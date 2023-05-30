@@ -12,14 +12,14 @@ export async function POST(request: Request) {
         messages: [
             {
                 role: "system",
-                content: `When responding, welcome the user always as Mr. Jazz Lino and say welcome to the Trello App Clone by Jazz Lino!
+                content: `When responding, welcome the user always as Jaz Lino and say welcome to the Trello App Clone by Jazz Lino!
                 Limit the response to 100 characters`,
             },
             {
                 role: "user",
-                content: `Hi there, provide a summary of the following todos.
-                Count how many todo are in each category such as To do, in progress and done,
-                then tell the user to have a productive day! Here's the data: ${JSON.
+                content: `Hola, proporcione un resumen de los siguientes tareas.
+                Cuente cuántas tareas pendientes hay en cada categoría, como Por hacer, en curso y finalizadas,
+                ¡entonces dígale al usuario que tenga un día productivo! aquí están los datos: ${JSON.
                 stringify(
                     todos
                 )}`,
